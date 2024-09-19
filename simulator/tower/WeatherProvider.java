@@ -4,7 +4,7 @@ import simulator.aircraft.Coordinates;
 
 public class WeatherProvider {
     private static WeatherProvider instance = null;
-    private String[] weather;
+    private String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
 
     private WeatherProvider(){}
 
@@ -16,7 +16,8 @@ public class WeatherProvider {
     }
     public String getCurrentWeather(Coordinates p_coordinates)
     {
-        return "nothing";
+        int pos = p_coordinates.getHeight() + p_coordinates.getLatitude() + p_coordinates.getLongitude();
+        return weather[pos % 4];
     }
     
 }

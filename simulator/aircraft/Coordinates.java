@@ -12,7 +12,17 @@ public class Coordinates {
         this.height = p_height;
     }
 
+    public static Coordinates create(int p_longitude, int p_latitude, int p_height) {
+        return new Coordinates(p_longitude, p_latitude, p_height);
+    }
+
     public int getLongitude() {return this.longitude;}
     public int getLatitude() {return this.latitute;}
     public int getHeight() {return this.height;}
+
+    public void updateCoordinates(int[] p_actions){
+        this.latitute += p_actions[0];
+        this.longitude += p_actions[1];
+        this.height += p_actions[2];
+    }
 }
