@@ -5,5 +5,5 @@ if [ "$1" = "del" ]; then
 else
     find * -name "*.java" > sources.txt
     javac @sources.txt
-    java simulator.Main
+    java simulator.Main scenario.txt
 fi

@@ -8,6 +8,7 @@ import simulator.aircraft.Flyable;
 
 public class Tower {
     private List<Flyable> observers = new ArrayList<>();
+    private List<Flyable> toDeleteObservers = new ArrayList<>();
 
     public void register(Flyable p_flyable){
         observers.add(p_flyable);
@@ -20,7 +21,7 @@ public class Tower {
 
     }
     public void unregister(Flyable p_flyable){
-        observers.remove(p_flyable);
+        toDeleteObservers.add(p_flyable);
         if (p_flyable instanceof Aircraft && this instanceof WeatherTower)
         {
             Aircraft air = (Aircraft)p_flyable;
@@ -32,5 +33,14 @@ public class Tower {
         for (Flyable flyable : observers) {
             flyable.updateConditions();
         }
+        for (Flyable flyable: toDeleteObservers)
+        {
+            observers.remove(flyable);  
+        }
+        toDeleteObservers.clear();
+    }
+
+    public boolean hasObservers(){
+        return !observers.isEmpty();
     }
 }

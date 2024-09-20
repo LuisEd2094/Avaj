@@ -16,11 +16,15 @@ public abstract class Aircraft extends Flyable{
     public String getName(){return this.name;}
     public String getType(){return this.type;}
     public long getId(){return this.id;}
+    protected void printMsg(String s)
+    {
+        System.out.printf("%s#%s(%d): %s%n", this.type, this.name, this.id, s);
+    }
 
     protected void unregisterTower(String s)
     {
         weatherTower.unregister(this);
-        System.out.printf("%s%n",s);
+        this.printMsg(s);
 
     }
 }
